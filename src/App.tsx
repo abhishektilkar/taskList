@@ -15,12 +15,21 @@ function App() {
     setTodos([...todos, newTodo]);
   }
 
+  function handleDeleteTodo(index: number) {
+    if (index > -1 && index < todos.length) {
+      const newList = [...todos];
+      newList.splice(index, 1);
+      return setTodos(newList);
+    }
+    // const newList = todos.require
+  }
+
   return (
     <>
       <TodoInput handleAddTodos={handleAddTodos}/>
-      <TodoList todos={todos}/>
+      <TodoList todos={todos} handleDeleteTodo={handleDeleteTodo}/>
     </>
   )
 }
 
-export default App
+export default App;
