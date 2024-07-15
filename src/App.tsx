@@ -24,6 +24,10 @@ function App() {
     // const newList = todos.require
   }
 
+  function handleEditTodo(index: number) {
+    
+  }
+
   return (
     <>
       <TodoInput handleAddTodos={handleAddTodos}/>
