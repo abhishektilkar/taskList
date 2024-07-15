@@ -1,9 +1,11 @@
-import React, { ReactNode } from 'react';
-interface WrapperProps {
-  children: ReactNode;
-}
-const TodoCard: React.FC<WrapperProps> = (props: WrapperProps) => {
-  const { children } = props;
+import React from 'react';
+
+type TodoCardProps = {
+  children: React.ReactNode;
+};
+
+const TodoCard: React.FC<TodoCardProps> = ({ children }) => {
+  // const { children } = props;
   return (
     <li className="todoItem">
         {children}

@@ -1,20 +1,20 @@
-import TodoCard from "./TodoCard";
+import React from 'react';
+import TodoCard from './TodoCard';
 
-export default function TodoList() {
-    let todos = [
-        'Go to the gym',
-        'Eat more fruits',
-        'Eat more veggies'
-    ];
+type TodoListProps = {
+  todos: string[];
+};
+
+const TodoList: React.FC<TodoListProps> = ({ todos }) => {
   return (
     <ul className="main">
-        {todos.map((todo, index) => {
-            return (
-                <TodoCard key={index}>
-                    <p>{todo}</p>
-                </TodoCard>
-            )
-        })}
+      {todos.map((todo, index) => (
+        <TodoCard key={index}>
+          <p>{todo}</p>
+        </TodoCard>
+      ))}
     </ul>
-  )
-}
+  );
+};
+
+export default TodoList;
