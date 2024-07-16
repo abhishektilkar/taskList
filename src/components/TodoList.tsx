@@ -4,13 +4,14 @@ import TodoCard from './TodoCard';
 type TodoListProps = {
     todos: string[];
     handleDeleteTodo: (index: number) => void;
+    handleEditTodo: (index: number) => void;
   };
 
-const TodoList: React.FC<TodoListProps> = ({ todos, handleDeleteTodo }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, handleDeleteTodo, handleEditTodo }) => {
   return (
     <ul className="main">
       {todos.map((todo, index) => (
-        <TodoCard handleDeleteTodo={handleDeleteTodo} key={index}>
+        <TodoCard handleDeleteTodo={handleDeleteTodo} handleEditTodo={handleEditTodo} key={index} todoI={index}>
           <p>{todo}</p>
         </TodoCard>
       ))}
