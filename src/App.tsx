@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
-import TodoInput from "./components/TodoInput"
-import TodoList from "./components/TodoList"
+import TodoInput from "./components/TodoInput";
+import TodoList from "./components/TodoList";
 
 function App() {
-  const [todos, setTodos] = useState([]);
-
-  const [newTodo, setNewTodo] = useState("");
+  const [todos, setTodos] = useState<string[]>([]);
+  const [newTodo, setNewTodo] = useState<string>("");
 
   function persistData(todos: string[]) {
-    localStorage.setItem('todos', JSON.stringify({todos}))
+    localStorage.setItem("todos", JSON.stringify({ todos }));
   }
 
   function handleAddTodos(newTodo: string) {
-    console.log('newTodo', newTodo);
-    if(!newTodo) return;
+    console.log("newTodo", newTodo);
+    if (!newTodo) return;
     const newTodoList = [...todos, newTodo];
     persistData(newTodoList);
     setTodos(newTodoList);
@@ -23,8 +22,7 @@ function App() {
     const newList = [...todos];
     newList.splice(index, 1);
     persistData(newList);
-    return setTodos(newList);
-    // const newList = todos.require
+    setTodos(newList);
   }
 
   function handleEditTodo(index: number) {
@@ -34,21 +32,20 @@ function App() {
   }
 
   useEffect(() => {
-    console.log('localStorage', localStorage);
-    if (!localStorage) return;
-    let localTodos = localStorage.getItem('todos');
-    if (!localTodos) return;
-    localTodos = JSON.parse(localTodos).todos;
-    setTodos(localTodos);
-    console.log(localTodos);
-  }, [])
+    const localTodos = localStorage.getItem("todos");
+    if (localTodos) {
+      const parsedTodos = JSON.parse(localTodos).todos;
+      setTodos(parsedTodos);
+      console.log(parsedTodos);
+    }
+  }, []);
 
   return (
     <>
-      <TodoInput handleAddTodos={handleAddTodos} newTodo={newTodo} setNewTodo={setNewTodo}/>
-      <TodoList todos={todos} handleDeleteTodo={handleDeleteTodo} handleEditTodo={handleEditTodo}/>
+      <TodoInput handleAddTodos={handleAddTodos} newTodo={newTodo} setNewTodo={setNewTodo} />
+      <TodoList todos={todos} handleDeleteTodo={handleDeleteTodo} handleEditTodo={handleEditTodo} />
     </>
-  )
+  );
 }
 
 export default App;
